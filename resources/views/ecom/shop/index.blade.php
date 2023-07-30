@@ -191,7 +191,7 @@ All Products
                                             <div class="product-info">
                                                 <span class="category">{{$product->category->name}}</span>
                                                 <h4 class="title">
-                                                    <a href="product-grids.html">{{$product->name}}</a>
+                                                    <a href="{{route('product.detail',['slug'=>$product->slug])}}">{{$product->name}}</a>
                                                 </h4>
                                                 <ul class="review">
                                                     <li><i class="lni lni-star-filled"></i></li>
@@ -248,7 +248,7 @@ All Products
                                                     <div class="product-info">
                                                         <span class="category">{{$product->category->name}}</span>
                                                         <h4 class="title">
-                                                            <a href="product-grids.html">{{$product->name}}</a>
+                                                            <a href="{{route('product.detail',['slug'=>$product->slug])}}">{{$product->name}}</a>
                                                         </h4>
                                                         <ul class="review">
                                                             <li><i class="lni lni-star-filled"></i></li>

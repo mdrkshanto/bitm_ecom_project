@@ -28,4 +28,9 @@ class EcomController extends Controller
     {
         return view('ecom.shop.index',['allProducts' => Product::orderBy('name','asc')->get()]);
     }
+
+    public function productDetail($slug)
+    {
+        return view('ecom.product.detail.index', ['product'=>Product::where('slug',$slug)->first()]);
+    }
 }

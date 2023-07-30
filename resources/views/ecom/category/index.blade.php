@@ -184,14 +184,14 @@
                                             <div class="product-image">
                                                 <img src="{{asset($product->image)}}" alt="{{$product->name}}" height="300">
                                                 <div class="button">
-                                                    <a href="product-details.html" class="btn"><i
+                                                    <a href="#" class="btn"><i
                                                             class="lni lni-cart"></i> Add to Cart</a>
                                                 </div>
                                             </div>
                                             <div class="product-info">
                                                 <span class="category">{{$product->category->name}}</span>
                                                 <h4 class="title">
-                                                    <a href="product-grids.html">{{$product->name}}</a>
+                                                    <a href="{{route('product.detail',['slug'=>$product->slug])}}">{{$product->name}}</a>
                                                 </h4>
                                                 <ul class="review">
                                                     <li><i class="lni lni-star-filled"></i></li>
@@ -248,7 +248,7 @@
                                                     <div class="product-info">
                                                         <span class="category">{{$product->category->name}}</span>
                                                         <h4 class="title">
-                                                            <a href="product-grids.html">{{$product->name}}</a>
+                                                            <a href="{{route('product.detail',['slug'=>$product->slug])}}">{{$product->name}}</a>
                                                         </h4>
                                                         <ul class="review">
                                                             <li><i class="lni lni-star-filled"></i></li>

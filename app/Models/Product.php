@@ -116,4 +116,9 @@ class Product extends Model
     {
         return $this->hasMany(OtherImage::class);
     }
+
+    public function products()
+    {
+        return $this->hasMany(Product::class);
+    }
 }

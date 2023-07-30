@@ -26,6 +26,7 @@ Route::controller(EcomController::class)->group(function (){
     Route::get('/category-products/{slug}','category')->name('category.products');
     Route::get('/subcategory-products/{slug}','subcategory')->name('subcategory.products');
     Route::get('/shop','shop')->name('shop');
+    Route::get('/product-detail/{slug}','productDetail')->name('product.detail');
 });
 
 Route::middleware([

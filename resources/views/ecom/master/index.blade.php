@@ -1,18 +1,19 @@
 <!DOCTYPE html>
 <html class="no-js" lang="zxx">
 <head>
-    <meta charset="utf-8" />
-    <meta http-equiv="x-ua-compatible" content="ie=edge" />
+    <meta charset="utf-8"/>
+    <meta http-equiv="x-ua-compatible" content="ie=edge"/>
     <title>ShopGrids - @yield('title')</title>
-    <meta name="description" content="" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <link rel="shortcut icon" type="image/x-icon" href="{{asset('/')}}ecom/assets/images/favicon.svg" />
+    <meta name="description" content=""/>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+    <link rel="shortcut icon" type="image/x-icon" href="{{asset('/')}}ecom/assets/images/favicon.svg"/>
 
-    <link rel="stylesheet" href="{{asset('/')}}ecom/assets/css/bootstrap.min.css" />
-    <link rel="stylesheet" href="{{asset('/')}}ecom/assets/css/LineIcons.3.0.css" />
-    <link rel="stylesheet" href="{{asset('/')}}ecom/assets/css/tiny-slider.css" />
-    <link rel="stylesheet" href="{{asset('/')}}ecom/assets/css/glightbox.min.css" />
-    <link rel="stylesheet" href="{{asset('/')}}ecom/assets/css/main.css" />
+    <link rel="stylesheet" href="{{asset('/')}}ecom/assets/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="{{asset('/')}}ecom/assets/css/LineIcons.3.0.css"/>
+    <link rel="stylesheet" href="{{asset('/')}}ecom/assets/css/tiny-slider.css"/>
+    <link rel="stylesheet" href="{{asset('/')}}ecom/assets/css/glightbox.min.css"/>
+    <link rel="stylesheet" href="{{asset('/')}}ecom/assets/css/main.css"/>
+    @yield('customStyle')
 </head>
 <body>
 <!--[if lte IE 9]>
@@ -165,9 +166,12 @@
                                     </div>
                                     <ul class="shopping-list">
                                         <li>
-                                            <a href="javascript:void(0)" class="remove" title="Remove this item"><i class="lni lni-close"></i></a>
+                                            <a href="javascript:void(0)" class="remove" title="Remove this item"><i
+                                                    class="lni lni-close"></i></a>
                                             <div class="cart-img-head">
-                                                <a class="cart-img" href="product-details.html"><img src="{{asset('/')}}ecom/assets/images/header/cart-items/item1.jpg" alt="#"></a>
+                                                <a class="cart-img" href="product-details.html"><img
+                                                        src="{{asset('/')}}ecom/assets/images/header/cart-items/item1.jpg"
+                                                        alt="#"></a>
                                             </div>
                                             <div class="content">
                                                 <h4><a href="product-details.html">
@@ -176,9 +180,12 @@
                                             </div>
                                         </li>
                                         <li>
-                                            <a href="javascript:void(0)" class="remove" title="Remove this item"><i class="lni lni-close"></i></a>
+                                            <a href="javascript:void(0)" class="remove" title="Remove this item"><i
+                                                    class="lni lni-close"></i></a>
                                             <div class="cart-img-head">
-                                                <a class="cart-img" href="product-details.html"><img src="{{asset('/')}}ecom/assets/images/header/cart-items/item2.jpg" alt="#"></a>
+                                                <a class="cart-img" href="product-details.html"><img
+                                                        src="{{asset('/')}}ecom/assets/images/header/cart-items/item2.jpg"
+                                                        alt="#"></a>
                                             </div>
                                             <div class="content">
                                                 <h4><a href="product-details.html">Wi-Fi Smart Camera</a></h4>
@@ -215,28 +222,36 @@
                         <span class="cat-button"><i class="lni lni-menu"></i>All Categories</span>
                         <ul class="sub-category">
                             @foreach($categories as $category)
-                            <li>
-                                <a href="{{route('category.products',['slug'=>$category->slug])}}">
-                                    {{$category->name}}
-                                    @if(count($category->subcategories)>0)
-                                    <i class="lni lni-chevron-right"></i>
-                                    @endif
-                                </a>
-                                @if(count($category->subcategories)>0)
-                                <ul class="inner-sub-category">
-                                    @foreach($category->subcategories as $subcategory)
-                                    <li><a href="{{route('subcategory.products',['slug'=>$subcategory->slug])}}">{{$subcategory->name}}</a></li>
-                                    @endforeach
-                                </ul>
+                                @if(count($category->products)>0)
+                                    <li>
+                                        <a href="{{route('category.products',['slug'=>$category->slug])}}">
+                                            {{$category->name}}
+                                            @if(count($category->subcategories)>0)
+                                                <i class="lni lni-chevron-right"></i>
+                                            @endif
+                                        </a>
+                                        @if(count($category->subcategories)>0)
+                                            <ul class="inner-sub-category">
+                                                @foreach($category->subcategories as $subcategory)
+                                                    @if(count($subcategory->products)>0)
+                                                    <li>
+                                                        <a href="{{route('subcategory.products',['slug'=>$subcategory->slug])}}">{{$subcategory->name}}</a>
+                                                    </li>
+                                                    @endif
+                                                @endforeach
+                                            </ul>
+                                        @endif
+                                    </li>
                                 @endif
-                            </li>
                             @endforeach
                         </ul>
                     </div>
 
 
                     <nav class="navbar navbar-expand-lg">
-                        <button class="navbar-toggler mobile-menu-btn" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                        <button class="navbar-toggler mobile-menu-btn" type="button" data-bs-toggle="collapse"
+                                data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+                                aria-expanded="false" aria-label="Toggle navigation">
                             <span class="toggler-icon"></span>
                             <span class="toggler-icon"></span>
                             <span class="toggler-icon"></span>
@@ -247,7 +262,8 @@
                                     <a href="{{route('home')}}" @if(request()->segment(1) == null)class="active"@endif>Home</a>
                                 </li>
                                 <li class="nav-item">
-                                    <a @if(request()->segment(1) == 'shop')class="active"@endif href="{{route('shop')}}">Shop</a>
+                                    <a @if(request()->segment(1) == 'shop')class="active"
+                                       @endif href="{{route('shop')}}">Shop</a>
                                 </li>
                             </ul>
                         </div>
@@ -333,7 +349,9 @@
                                 <li><span>Saturday: </span> 10.00 am - 6.00 pm</li>
                             </ul>
                             <p class="mail">
-                                <a href="https://demo.graygrids.com/cdn-cgi/l/email-protection#5b282e2b2b34292f1b2833342b3c29323f2875383436"><span class="__cf_email__" data-cfemail="98ebede8e8f7eaecd8ebf0f7e8ffeaf1fcebb6fbf7f5">[email&#160;protected]</span></a>
+                                <a href="https://demo.graygrids.com/cdn-cgi/l/email-protection#5b282e2b2b34292f1b2833342b3c29323f2875383436"><span
+                                        class="__cf_email__"
+                                        data-cfemail="98ebede8e8f7eaecd8ebf0f7e8ffeaf1fcebb6fbf7f5">[email&#160;protected]</span></a>
                             </p>
                         </div>
 
@@ -407,7 +425,8 @@
                     </div>
                     <div class="col-lg-4 col-12">
                         <div class="copyright">
-                            <p>Designed and Developed by<a href="https://graygrids.com/" rel="nofollow" target="_blank">GrayGrids</a></p>
+                            <p>Designed and Developed by<a href="https://graygrids.com/" rel="nofollow" target="_blank">GrayGrids</a>
+                            </p>
                         </div>
                     </div>
                     <div class="col-lg-4 col-12">

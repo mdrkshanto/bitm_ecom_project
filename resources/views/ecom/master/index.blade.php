@@ -233,11 +233,9 @@
                                         @if(count($category->subcategories)>0)
                                             <ul class="inner-sub-category">
                                                 @foreach($category->subcategories as $subcategory)
-                                                    @if(count($subcategory->products)>0)
                                                     <li>
                                                         <a href="{{route('subcategory.products',['slug'=>$subcategory->slug])}}">{{$subcategory->name}}</a>
                                                     </li>
-                                                    @endif
                                                 @endforeach
                                             </ul>
                                         @endif

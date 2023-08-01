@@ -40,37 +40,41 @@
                         <div class="product-info">
                             <h2 class="title">{{$product->name}}</h2>
                             <p class="category"><i class="lni lni-tag"></i> Category:<a href="{{route('category.products',['slug'=>$product->category->slug])}}">{{$product->category->name}}</a></p>
-                            <h3 class="price">&#2547; {{$product->selling_price}}<span>&#2547; {{$product->regular_price}}</span></h3>
+                            <p class="category"> Stock: {{$product->stock_amount}}</p>
+                            <h3 class="price">&#2547;{{number_format($product->selling_price,2)}}<span>&#2547; {{number_format($product->regular_price,2)}}</span></h3>
                             @if($product->short_description)
                             <p class="info-text">{{$product->short_description}}</p>
                             @endif
-                            <div class="row">
-                                <div class="col-12">
-                                    <div class="form-group quantity">
-                                        <label for="color">Quantity</label>
-                                        <input type="number" class="form-control shadow-none" name="qty" />
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="bottom-content">
-                                <div class="row align-items-end">
-                                    <div class="col-lg-4 col-md-4 col-12">
-                                        <div class="button cart-button">
-                                            <button class="btn" style="width: 100%;">Add to Cart</button>
-                                        </div>
-                                    </div>
-                                    <div class="col-lg-4 col-md-4 col-12">
-                                        <div class="wish-button">
-                                            <button class="btn"><i class="lni lni-reload"></i> Compare</button>
-                                        </div>
-                                    </div>
-                                    <div class="col-lg-4 col-md-4 col-12">
-                                        <div class="wish-button">
-                                            <button class="btn"><i class="lni lni-heart"></i> To Wishlist</button>
+
+                            <form action="{{route('add.cart',['id'=>$product->id])}}" method="POST">
+                                @csrf
+                                <div class="row">
+                                    <div class="col-12">
+                                        <div class="form-group quantity">
+                                            <label for="color">Quantity</label>
+                                            <input type="number" class="form-control shadow-none" name="quantity" value="1" min="1"/>
+                                            @if($errors->has('quantity'))
+                                                <span class="text-danger">{{$errors->first('quantity')}}</span>
+                                            @endif
                                         </div>
                                     </div>
                                 </div>
-                            </div>
+                                <div class="bottom-content">
+                                    <div class="row align-items-end">
+                                        <div class="col-md-6">
+                                            <div class="button cart-button">
+                                                <button class="btn w-100" type="submit">Add to Cart</button>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="wish-button">
+                                                <button class="btn"><i class="lni lni-heart"></i> To Wishlist</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </form>
+
                         </div>
                     </div>
                 </div>
@@ -285,12 +289,4 @@
             });
         });
     </script>
-@endsection
-
-@section('customStyle')
-    <style>
-        .info-text{
-
-        }
-    </style>
 @endsection

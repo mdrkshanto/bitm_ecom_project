@@ -162,7 +162,7 @@
                                 <div class="shopping-item">
                                     <div class="dropdown-cart-header">
                                         <span>2 Items</span>
-                                        <a href="cart.html">View Cart</a>
+                                        <a href="{{route('cart')}}">View Cart</a>
                                     </div>
                                     <ul class="shopping-list">
                                         <li>
@@ -230,6 +230,7 @@
                                                 <i class="lni lni-chevron-right"></i>
                                             @endif
                                         </a>
+                                        @php( $subcategory = extract($category->subcategories->toArray()))
                                         @if(count($category->subcategories)>0)
                                             <ul class="inner-sub-category">
                                                 @foreach($category->subcategories as $subcategory)

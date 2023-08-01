@@ -9,6 +9,7 @@ use App\Http\Controllers\SubcategoryController;
 use App\Http\Controllers\BrandController;
 use App\Http\Controllers\UnitController;
 use App\Http\Controllers\ProductController;
+use App\Http\Controllers\CartController;
 
 /*
 |--------------------------------------------------------------------------
@@ -27,6 +28,12 @@ Route::controller(EcomController::class)->group(function (){
     Route::get('/subcategory-products/{slug}','subcategory')->name('subcategory.products');
     Route::get('/shop','shop')->name('shop');
     Route::get('/product-detail/{slug}','productDetail')->name('product.detail');
+});
+
+Route::controller(CartController::class)->group(function (){
+    Route::get('/cart','index')->name('cart');
+    Route::post('/add-to-cart/{id}','add')->name('add.cart');
+    Route::post('/update-cart/{id}','update')->name('update.cart');
 });
 
 Route::middleware([

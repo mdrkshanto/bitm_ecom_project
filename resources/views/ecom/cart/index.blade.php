@@ -16,7 +16,7 @@
         </div>
     </div>
 
-    <div class="shopping-cart {{session('message') ? 'pt-5' : 'section'}}">
+    <div class="shopping-cart {{session('message') ? 'py-5' : 'section'}}">
         @if(session('message'))
             <div class="alert alert-success alert-dismissible fade show text-center fw-bolder" role="alert">
                 {{session('message')}}
@@ -25,6 +25,12 @@
         @endif
         <div class="container">
             <div class="cart-list-head">
+
+                @if(Cart::count()<1)
+                    <div class="card card-body">
+                        <span class="fw-bolder display-1 text-center text-black">Your cart is empty yet.</span>
+                    </div>
+                @else
 
                 <div class="cart-list-title">
                     <div class="row">
@@ -52,8 +58,7 @@
                     <div class="cart-single-list">
                         <div class="row align-items-center">
                             <div class="col-lg-1 col-md-1 col-12">
-                                <a href="product-details.html"><img src="{{asset($cartProduct->options->image)}}"
-                                                                    alt="{{$cartProduct->name}}"></a>
+                                <a href="{{route('product.detail',['slug'=>$cartProduct->options->slug])}}"><img src="{{asset($cartProduct->options->image)}}" alt="{{$cartProduct->name}}"></a>
                             </div>
                             <div class="col-lg-4 col-md-3 col-12">
                                 <h5 class="product-name"><a
@@ -85,11 +90,12 @@
                                 <p>&#2547;{{number_format($cartProduct->subtotal,2)}}</p>
                             </div>
                             <div class="col-lg-1 col-md-2 col-12">
-                                <a class="remove-item" href="javascript:void(0)"><i class="lni lni-close"></i></a>
+                                <a class="remove-item" href="{{route('delete.cart',['id'=>$cartProduct->rowId])}}"><i class="lni lni-close"></i></a>
                             </div>
                         </div>
                     </div>
                 @endforeach
+                @endif
 
             </div>
             <div class="row">

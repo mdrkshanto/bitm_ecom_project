@@ -33,7 +33,9 @@ Route::controller(EcomController::class)->group(function (){
 Route::controller(CartController::class)->group(function (){
     Route::get('/cart','index')->name('cart');
     Route::post('/add-to-cart/{id}','add')->name('add.cart');
+    Route::get('/add-to-cart/{slug}','addSingleProduct')->name('add.cart');
     Route::post('/update-cart/{id}','update')->name('update.cart');
+    Route::get('/remove-cart-item/{id}','delete')->name('delete.cart');
 });
 
 Route::middleware([

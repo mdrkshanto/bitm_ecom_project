@@ -43,19 +43,6 @@
                             </div>
 
                         </div>
-{{--                        <div class="col-lg-12 col-md-6 col-12">--}}
-
-{{--                            <div class="hero-small-banner style2">--}}
-{{--                                <div class="content">--}}
-{{--                                    <h2>Weekly Sale!</h2>--}}
-{{--                                    <p>Saving up to 50% off all online store items this week.</p>--}}
-{{--                                    <div class="button">--}}
-{{--                                        <a class="btn" href="product-grids.html">Shop Now</a>--}}
-{{--                                    </div>--}}
-{{--                                </div>--}}
-{{--                            </div>--}}
-
-{{--                        </div>--}}
                     </div>
                 </div>
             </div>
@@ -115,7 +102,7 @@
                         <div class="product-image">
                             <img src="{{asset($trendingProduct->image)}}" alt="{{$trendingProduct->name}}" height="300">
                             <div class="button">
-                                <a href="product-details.html" class="btn"><i class="lni lni-cart"></i> Add to Cart</a>
+                                <a href="{{route('add.cart',['slug'=>$trendingProduct->slug])}}" class="btn"><i class="lni lni-cart"></i> Add to Cart</a>
                             </div>
                         </div>
                         <div class="product-info">

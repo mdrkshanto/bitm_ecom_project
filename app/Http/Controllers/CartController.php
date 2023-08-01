@@ -16,6 +16,25 @@ class CartController extends Controller
 
         return view('ecom.cart.index',['cartProducts'=>Cart::content()]);
     }
+    public function addSingleProduct($slug)
+    {
+        $this->product = Product::where('slug',$slug)->first();
+
+        Cart::add([
+            'id'        => $this->product->id,
+            'name'      => $this->product->name,
+            'qty'       => 1,
+            'price'     => $this->product->selling_price,
+            'options'   => [
+                'image'     => $this->product->image,
+                'category'  => $this->product->category->name,
+                'slug'      => $this->product->slug,
+                'stock'     => $this->product->stock_amount
+            ]
+        ]);
+
+        return back();
+    }
     public function add(Request $request, $id)
     {
         $this->product = Product::find($id);
@@ -63,5 +82,11 @@ class CartController extends Controller
         Cart::update($id,$request->quantity);
 
         return back()->with('message', 'Your cart has been updated successfully.');
+    }
+
+    public function delete($id)
+    {
+        Cart::remove($id);
+        return back()->with('message','Your selected item has been removed from your cart.');
     }
 }

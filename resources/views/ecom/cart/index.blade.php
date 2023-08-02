@@ -28,7 +28,7 @@
 
                 @if(Cart::count()<1)
                     <div class="card card-body">
-                        <span class="fw-bolder display-1 text-center text-black">Your cart is empty yet.</span>
+                        <span class="fw-bolder display-1 text-center text-info">Your cart is empty.</span>
                     </div>
                 @else
 

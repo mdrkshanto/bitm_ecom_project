@@ -2,7 +2,6 @@
 @section('title')
 All Products
 @endsection
-
 @section('body')
     <div class="breadcrumbs">
         <div class="container">
@@ -184,7 +183,7 @@ All Products
                                             <div class="product-image">
                                                 <img src="{{asset($product->image)}}" alt="{{$product->name}}" height="300">
                                                 <div class="button">
-                                                    <a href="{{route('add.cart',['slug'=>$product->slug])}}" class="btn"><i
+                                                    <a href="{{route('add.single.cart',['slug'=>$product->slug])}}" class="btn"><i
                                                             class="lni lni-cart"></i> Add to Cart</a>
                                                 </div>
                                             </div>
@@ -238,7 +237,7 @@ All Products
                                                     <div class="product-image">
                                                         <img src="{{asset($product->image)}}" alt="{{$product->name}}">
                                                         <div class="button">
-                                                            <a href="{{route('add.cart',['slug'=>$product->slug])}}" class="btn"><i
+                                                            <a href="{{route('add.single.cart',['slug'=>$product->slug])}}" class="btn"><i
                                                                     class="lni lni-cart"></i> Add to
                                                                 Cart</a>
                                                         </div>

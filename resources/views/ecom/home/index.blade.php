@@ -102,7 +102,7 @@
                         <div class="product-image">
                             <img src="{{asset($trendingProduct->image)}}" alt="{{$trendingProduct->name}}" height="300">
                             <div class="button">
-                                <a href="{{route('add.cart',['slug'=>$trendingProduct->slug])}}" class="btn"><i class="lni lni-cart"></i> Add to Cart</a>
+                                <a href="{{route('add.single.cart',['slug'=>$trendingProduct->slug])}}" class="btn"><i class="lni lni-cart"></i> Add to Cart</a>
                             </div>
                         </div>
                         <div class="product-info">

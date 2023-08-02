@@ -156,12 +156,12 @@
                             <div class="cart-items">
                                 <a href="javascript:void(0)" class="main-btn">
                                     <i class="lni lni-cart"></i>
-                                    <span class="total-items">{{Cart::count()}}</span>
+                                    <span class="total-items">{{Cart::content()->count()}}</span>
                                 </a>
 
                                 <div class="shopping-item">
                                     <div class="dropdown-cart-header">
-                                        <span>{{Cart::content()->count()}} {{Cart::content()->count()>1?'Items':'Item'}}</span>
+                                        <span>{{Cart::count()}} {{Cart::count()>1?'Items':'Item'}}</span>
                                         <a href="{{route('cart')}}">View Cart</a>
                                     </div>
                                     <ul class="shopping-list">

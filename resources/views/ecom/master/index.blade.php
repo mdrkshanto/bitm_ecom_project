@@ -154,14 +154,14 @@
                                 </a>
                             </div>
                             <div class="cart-items">
-                                <a href="javascript:void(0)" class="main-btn">
+                                <a href="{{route('cart')}}" class="main-btn">
                                     <i class="lni lni-cart"></i>
                                     <span class="total-items">{{Cart::content()->count()}}</span>
                                 </a>
 
                                 <div class="shopping-item">
                                     <div class="dropdown-cart-header">
-                                        <span>{{Cart::count()}} {{Cart::count()>1?'Items':'Item'}}</span>
+                                        <span>{{Cart::content()->count()}} {{Cart::content()->count()>1?'Items':'Item'}}</span>
                                         <a href="{{route('cart')}}">View Cart</a>
                                     </div>
                                     <ul class="shopping-list">
@@ -218,7 +218,6 @@
                                                 <i class="lni lni-chevron-right"></i>
                                             @endif
                                         </a>
-                                        @php( $subcategory = extract($category->subcategories->toArray()))
                                         @if(count($category->subcategories)>0)
                                             <ul class="inner-sub-category">
                                                 @foreach($category->subcategories as $subcategory)

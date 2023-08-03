@@ -4,18 +4,19 @@ namespace App\Http\Controllers;
 
 use App\Models\Product;
 use Illuminate\Http\Request;
-use Cart;
+use Gloudemans\Shoppingcart\Facades\Cart;
 
 class CartController extends Controller
 {
-    private $product;
+    private $product,$shippingCost;
 
     public function index()
     {
-//        return Cart::content();
-
+        $this->shippingCost = 100;
         return view('ecom.cart.index',['cartProducts'=>Cart::content()]);
     }
+
+
     public function addSingleProduct($slug)
     {
         $this->product = Product::where('slug',$slug)->first();
@@ -39,31 +40,41 @@ class CartController extends Controller
     {
         $this->product = Product::find($id);
         $stockAmount = $this->product->stock_amount;
+        if (Cart::count() > 0)
+        {
+            foreach (Cart::content() as $cartProduct)
+            {
+                if ($cartProduct->id == $id)
+                {
+                    $totalItem = ($cartProduct->qty + $request->quantity);
+                    if ($stockAmount <= $totalItem)
+                    {
+                        $request->merge(['quantity'=>$totalItem]);
+                    }
+                }
+            }
+        }
+
         $this->validate($request,[
             'quantity' => "required|numeric|min:1|max:$stockAmount",
         ],[
             'quantity.max'=>'The quantity cannot be greater than '.$stockAmount.'.'
         ]);
 
-        if (Cart::count() >= $stockAmount)
-        {
-            $qty = $stockAmount;
-        }else{
-            $qty = $request->quantity;
-        }
-
         Cart::add([
             'id'        => $this->product->id,
             'name'      => $this->product->name,
-            'qty'       => $qty,
+            'qty'       => $request->quantity,
             'price'     => $this->product->selling_price,
             'options'   => [
                 'image'     => $this->product->image,
                 'category'  => $this->product->category->name,
                 'slug'      => $this->product->slug,
-                'stock'     => $this->product->stock_amount
+                'stock'     => $this->product->stock_amount,
             ]
         ]);
+
+
 
         return redirect()->route('cart');
     }
@@ -72,6 +83,21 @@ class CartController extends Controller
     {
         $this->product = Product::find($request->product_id);
         $stockAmount = $this->product->stock_amount;
+
+        if (Cart::count() > 0)
+        {
+            foreach (Cart::content() as $cartProduct)
+            {
+                if ($cartProduct->id == $id)
+                {
+                    $totalItem = ($cartProduct->qty + $request->quantity);
+                    if ($stockAmount <= $totalItem)
+                    {
+                        $request->merge(['quantity'=>$totalItem]);
+                    }
+                }
+            }
+        }
 
         $this->validate($request,[
             'quantity' => "required|numeric|min:1|max:$stockAmount",

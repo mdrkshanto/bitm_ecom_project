@@ -15,7 +15,10 @@ return new class extends Migration
             $table->id();
             $table->integer('order_id');
             $table->integer('product_id');
-            $table->integer('product_id');
+            $table->string('product_name');
+            $table->text('product_image');
+            $table->integer('product_price');
+            $table->integer('product_quantity');
             $table->timestamps();
         });
     }

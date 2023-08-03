@@ -129,9 +129,6 @@
                                     <p class="price">$164.50</p>
                                 </div>
                             </div>
-                            <div class="price-table-btn button">
-                                <a href="javascript:void(0)" class="btn btn-alt">Checkout</a>
-                            </div>
                         </div>
                         <div class="checkout-sidebar-banner mt-30">
                             <a href="product-grids.html">

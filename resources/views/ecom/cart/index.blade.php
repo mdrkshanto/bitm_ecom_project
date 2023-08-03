@@ -125,17 +125,17 @@
                             <div class="col-lg-4 col-md-6 col-12">
                                 <div class="right">
                                     <ul>
-                                        <li>Cart Subtotal<span>&#2547;{{Cart::subtotal()}}</span></li>
-                                        <li>TAX(15%)<span>&#2547;{{Cart::tax()}}</span></li>
+                                        <li>Cart Subtotal<span>&#2547;{{number_format(Cart::subtotal(),2)}}</span></li>
+                                        <li>TAX(15%)<span>&#2547;{{number_format(Cart::tax(),2)}}</span></li>
                                         @if(Cart::count() > 0)
                                             @php(Cart::addCost('shippingCharge',100*Cart::content()->count()))
-                                            <li>Shipping Charge<span>&#2547;{{Cart::getCost('shippingCharge')}}</span>
+                                            <li>Shipping Charge<span>&#2547;{{number_format(Cart::getCost('shippingCharge'),2)}}</span>
                                             </li>
                                         @endif
                                         <li class="last">You Pay<span>&#2547;{{number_format(round(Cart::total()),2)}}</span></li>
                                     </ul>
                                     <div class="button">
-                                        <a href="checkout.html" class="btn">Checkout</a>
+                                        <a href="{{route('checkout.index')}}" class="btn">Checkout</a>
                                         <a href="{{route('home')}}" class="btn btn-alt">Continue shopping</a>
                                     </div>
                                 </div>

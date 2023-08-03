@@ -187,7 +187,7 @@
                                             <span class="total-amount">&#2547;{{number_format(Cart::subtotal(),2)}}</span>
                                         </div>
                                         <div class="button">
-                                            <a href="checkout.html" class="btn animate">Checkout</a>
+                                            <a href="{{route('checkout.index')}}" class="btn animate">Checkout</a>
                                         </div>
                                     </div>
                                 </div>

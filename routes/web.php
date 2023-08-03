@@ -10,6 +10,7 @@ use App\Http\Controllers\BrandController;
 use App\Http\Controllers\UnitController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\CartController;
+use App\Http\Controllers\CheckoutController;
 
 /*
 |--------------------------------------------------------------------------
@@ -36,6 +37,11 @@ Route::controller(CartController::class)->group(function (){
     Route::get('/add-to-cart/{slug}','addSingleProduct')->name('add.single.cart');
     Route::post('/update-cart/{id}','update')->name('update.cart');
     Route::get('/remove-cart-item/{id}','delete')->name('delete.cart');
+});
+
+Route::controller(CheckoutController::class)->group(function (){
+    Route::post('/test','test')->name('checkout.test');
+    Route::get('/checkout','index')->name('checkout.index');
 });
 
 Route::middleware([

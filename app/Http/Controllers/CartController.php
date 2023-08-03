@@ -21,6 +21,22 @@ class CartController extends Controller
     {
         $this->product = Product::where('slug',$slug)->first();
 
+        $stockAmount = $this->product->stock_amount;
+        if (Cart::count() > 0)
+        {
+            foreach (Cart::content() as $cartProduct)
+            {
+                if ($cartProduct->id == $this->product->id)
+                {
+                    $totalItem = ($cartProduct->qty + 1);
+                    if ($stockAmount <= $totalItem)
+                    {
+                        return back()->with('message','Sorry, we have no more this product in stock. Please, try other product.');
+                    }
+                }
+            }
+        }
+
         Cart::add([
             'id'        => $this->product->id,
             'name'      => $this->product->name,

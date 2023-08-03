@@ -13,26 +13,29 @@
 
                         <div class="hero-slider">
                             @foreach($carouselProducts as $carouselProduct)
-                            <div class="single-slider" style="background-image: url({{asset($carouselProduct->image)}});">
-                                <div class="content">
-                                    <h2>{{$carouselProduct->name}}</h2>
+                                <div class="single-slider"
+                                     style="background-image: url({{asset($carouselProduct->image)}});">
+                                    <div class="content">
+                                        <h2>{{$carouselProduct->name}}</h2>
                                         <p>{{$carouselProduct->short_description}}</p>
-                                    <h3><span>Now Only</span> &#2547;{{$carouselProduct->selling_price}}</h3>
-                                    <div class="button">
-                                        <a href="product-grids.html" class="btn">Shop Now</a>
+                                        <h3><span>Now Only</span> &#2547;{{$carouselProduct->selling_price}}</h3>
+                                        <div class="button">
+                                            <a href="product-grids.html" class="btn">Shop Now</a>
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
                             @endforeach
                         </div>
 
                     </div>
                 </div>
+                @if($featuredProduct)
                 <div class="col-lg-4 col-12">
                     <div class="row">
                         <div class="col-lg-12 col-md-6 col-12 md-custom-padding">
 
-                            <div class="hero-small-banner" style="background-image: url('{{asset($featuredProduct->image)}}');">
+                            <div class="hero-small-banner"
+                                 style="background-image: url('{{asset($featuredProduct->image)}}');">
                                 <div class="content">
                                     <h2>
                                         <span>New line required</span>
@@ -45,6 +48,7 @@
                         </div>
                     </div>
                 </div>
+                @endif
             </div>
         </div>
     </section>
@@ -56,86 +60,99 @@
                 <div class="col-12">
                     <div class="section-title">
                         <h2>Featured Categories</h2>
-{{--                        <p>There are many variations of passages of Lorem Ipsum available, but the majority have--}}
-{{--                            suffered alteration in some form.</p>--}}
+                        {{--                        <p>There are many variations of passages of Lorem Ipsum available, but the majority have--}}
+                        {{--                            suffered alteration in some form.</p>--}}
                     </div>
                 </div>
             </div>
             <div class="row">
                 @foreach($featuredCategories as $featuredCategory)
-                <div class="col-lg-4 col-md-6 col-12">
+                    <div class="col-lg-4 col-md-6 col-12">
 
-                    <div class="single-category h-100">
-                        <h3 class="heading">{{$featuredCategory->name}}</h3>
-                        <ul>
-                            @foreach($featuredCategory->subcategories as $subcategory)
-                            <li><a href="{{route('subcategory.products',['slug'=>$subcategory->slug])}}">{{$subcategory->name}}</a></li>
-                            @endforeach
-                        </ul>
-                        <div class="images">
-                            <img src="{{asset($featuredCategory->image)}}" alt="{{$featuredCategory->name}}">
-                        </div>
-                    </div>
-
-                </div>
-                @endforeach
-            </div>
-        </div>
-    </section>
-
-
-    <section class="trending-product section">
-        <div class="container">
-            <div class="row">
-                <div class="col-12">
-                    <div class="section-title">
-                        <h2>Trending Product</h2>
-{{--                        <p></p>--}}
-                    </div>
-                </div>
-            </div>
-            <div class="row">
-                @foreach($trendingProducts as $trendingProduct)
-                <div class="col-lg-3 col-md-4 my-3">
-
-                    <div class="single-product h-100">
-                        <div class="product-image">
-                            <img src="{{asset($trendingProduct->image)}}" alt="{{$trendingProduct->name}}" height="300">
-                            <div class="button">
-                                <a href="{{route('add.single.cart',['slug'=>$trendingProduct->slug])}}" class="btn"><i class="lni lni-cart"></i> Add to Cart</a>
-                            </div>
-                        </div>
-                        <div class="product-info">
-                            <span class="category">{{$trendingProduct->category->name}}</span>
-                            <h4 class="title">
-                                <a href="{{route('product.detail',['slug'=>$trendingProduct->slug])}}">{{$trendingProduct->name}}</a>
-                            </h4>
-                            <ul class="review">
-                                <li><i class="lni lni-star-filled"></i></li>
-                                <li><i class="lni lni-star-filled"></i></li>
-                                <li><i class="lni lni-star-filled"></i></li>
-                                <li><i class="lni lni-star-filled"></i></li>
-                                <li><i class="lni lni-star"></i></li>
-                                <li><span>4.0 Review(s)</span></li>
+                        <div class="single-category h-100">
+                            <h3 class="heading">{{$featuredCategory->name}}</h3>
+                            <ul>
+                                @foreach($featuredCategory->subcategories as $subcategory)
+                                    <li>
+                                        <a href="{{route('subcategory.products',['slug'=>$subcategory->slug])}}">{{$subcategory->name}}</a>
+                                    </li>
+                                @endforeach
                             </ul>
-                            <div class="price">
-                                <span>&#2547;{{$trendingProduct->selling_price}}</span>
+                            <div class="images">
+                                <img src="{{asset($featuredCategory->image)}}" alt="{{$featuredCategory->name}}">
                             </div>
                         </div>
-                    </div>
 
-                </div>
+                    </div>
                 @endforeach
             </div>
         </div>
     </section>
+
+    @if(count($trendingProducts)>0)
+        <section class="trending-product section">
+            <div class="container">
+                <div class="row">
+                    <div class="col-12">
+                        <div class="section-title">
+                            <h2>Trending Product</h2>
+                            @if(session('message'))
+                                <div class="alert alert-info alert-dismissible fade show text-center fw-bolder"
+                                     role="alert">
+                                    {{session('message')}}
+                                    <button type="button" class="btn-close" data-bs-dismiss="alert"
+                                            aria-label="Close"></button>
+                                </div>
+                            @endif
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    @foreach($trendingProducts as $trendingProduct)
+                        <div class="col-lg-3 col-md-4 my-3">
+
+                            <div class="single-product h-100">
+                                <div class="product-image">
+                                    <img src="{{asset($trendingProduct->image)}}" alt="{{$trendingProduct->name}}"
+                                         height="300">
+                                    <div class="button">
+                                        <a href="{{route('add.single.cart',['slug'=>$trendingProduct->slug])}}"
+                                           class="btn"><i class="lni lni-cart"></i> Add to Cart</a>
+                                    </div>
+                                </div>
+                                <div class="product-info">
+                                    <span class="category">{{$trendingProduct->category->name}}</span>
+                                    <h4 class="title">
+                                        <a href="{{route('product.detail',['slug'=>$trendingProduct->slug])}}">{{$trendingProduct->name}}</a>
+                                    </h4>
+                                    <ul class="review">
+                                        <li><i class="lni lni-star-filled"></i></li>
+                                        <li><i class="lni lni-star-filled"></i></li>
+                                        <li><i class="lni lni-star-filled"></i></li>
+                                        <li><i class="lni lni-star-filled"></i></li>
+                                        <li><i class="lni lni-star"></i></li>
+                                        <li><span>4.0 Review(s)</span></li>
+                                    </ul>
+                                    <div class="price">
+                                        <span>&#2547;{{$trendingProduct->selling_price}}</span>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                    @endforeach
+                </div>
+            </div>
+        </section>
+    @endif
 
 
     <section class="banner section">
         <div class="container">
             <div class="row">
                 <div class="col-lg-6 col-md-6 col-12">
-                    <div class="single-banner" style="background-image:url('{{asset('/')}}ecom/assets/images/banner/banner-1-bg.jpg')">
+                    <div class="single-banner"
+                         style="background-image:url('{{asset('/')}}ecom/assets/images/banner/banner-1-bg.jpg')">
                         <div class="content">
                             <h2>Smart Watch 2.0</h2>
                             <p>Space Gray Aluminum Case with <br>Black/Volt Real Sport Band </p>
@@ -146,7 +163,8 @@
                     </div>
                 </div>
                 <div class="col-lg-6 col-md-6 col-12">
-                    <div class="single-banner custom-responsive-margin" style="background-image:url('{{asset('/')}}ecom/assets/images/banner/banner-2-bg.jpg')">
+                    <div class="single-banner custom-responsive-margin"
+                         style="background-image:url('{{asset('/')}}ecom/assets/images/banner/banner-2-bg.jpg')">
                         <div class="content">
                             <h2>Smart Headphone</h2>
                             <p>Lorem ipsum dolor sit amet, <br>eiusmod tempor
@@ -268,7 +286,8 @@
                         </div>
                     </div>
 
-                    <div class="single-banner right" style="background-image:url('{{asset('/')}}ecom/assets/images/banner/banner-3-bg.jpg');margin-top: 30px;">
+                    <div class="single-banner right"
+                         style="background-image:url('{{asset('/')}}ecom/assets/images/banner/banner-3-bg.jpg');margin-top: 30px;">
                         <div class="content">
                             <h2>Samsung Notebook 9 </h2>
                             <p>Lorem ipsum dolor sit amet, <br>eiusmod tempor
@@ -342,7 +361,8 @@
 
                     <div class="single-list">
                         <div class="list-image">
-                            <a href="product-grids.html"><img src="{{asset('/')}}ecom/assets/images/home-product-list/01.jpg" alt="#"></a>
+                            <a href="product-grids.html"><img
+                                    src="{{asset('/')}}ecom/assets/images/home-product-list/01.jpg" alt="#"></a>
                         </div>
                         <div class="list-info">
                             <h3>
@@ -355,7 +375,8 @@
 
                     <div class="single-list">
                         <div class="list-image">
-                            <a href="product-grids.html"><img src="{{asset('/')}}ecom/assets/images/home-product-list/02.jpg" alt="#"></a>
+                            <a href="product-grids.html"><img
+                                    src="{{asset('/')}}ecom/assets/images/home-product-list/02.jpg" alt="#"></a>
                         </div>
                         <div class="list-info">
                             <h3>
@@ -368,7 +389,8 @@
 
                     <div class="single-list">
                         <div class="list-image">
-                            <a href="product-grids.html"><img src="{{asset('/')}}ecom/assets/images/home-product-list/03.jpg" alt="#"></a>
+                            <a href="product-grids.html"><img
+                                    src="{{asset('/')}}ecom/assets/images/home-product-list/03.jpg" alt="#"></a>
                         </div>
                         <div class="list-info">
                             <h3>
@@ -384,7 +406,8 @@
 
                     <div class="single-list">
                         <div class="list-image">
-                            <a href="product-grids.html"><img src="{{asset('/')}}ecom/assets/images/home-product-list/04.jpg" alt="#"></a>
+                            <a href="product-grids.html"><img
+                                    src="{{asset('/')}}ecom/assets/images/home-product-list/04.jpg" alt="#"></a>
                         </div>
                         <div class="list-info">
                             <h3>
@@ -397,7 +420,8 @@
 
                     <div class="single-list">
                         <div class="list-image">
-                            <a href="product-grids.html"><img src="{{asset('/')}}ecom/assets/images/home-product-list/05.jpg" alt="#"></a>
+                            <a href="product-grids.html"><img
+                                    src="{{asset('/')}}ecom/assets/images/home-product-list/05.jpg" alt="#"></a>
                         </div>
                         <div class="list-info">
                             <h3>
@@ -410,7 +434,8 @@
 
                     <div class="single-list">
                         <div class="list-image">
-                            <a href="product-grids.html"><img src="{{asset('/')}}ecom/assets/images/home-product-list/06.jpg" alt="#"></a>
+                            <a href="product-grids.html"><img
+                                    src="{{asset('/')}}ecom/assets/images/home-product-list/06.jpg" alt="#"></a>
                         </div>
                         <div class="list-info">
                             <h3>
@@ -426,7 +451,8 @@
 
                     <div class="single-list">
                         <div class="list-image">
-                            <a href="product-grids.html"><img src="{{asset('/')}}ecom/assets/images/home-product-list/07.jpg" alt="#"></a>
+                            <a href="product-grids.html"><img
+                                    src="{{asset('/')}}ecom/assets/images/home-product-list/07.jpg" alt="#"></a>
                         </div>
                         <div class="list-info">
                             <h3>
@@ -439,7 +465,8 @@
 
                     <div class="single-list">
                         <div class="list-image">
-                            <a href="product-grids.html"><img src="{{asset('/')}}ecom/assets/images/home-product-list/08.jpg" alt="#"></a>
+                            <a href="product-grids.html"><img
+                                    src="{{asset('/')}}ecom/assets/images/home-product-list/08.jpg" alt="#"></a>
                         </div>
                         <div class="list-info">
                             <h3>
@@ -452,7 +479,8 @@
 
                     <div class="single-list">
                         <div class="list-image">
-                            <a href="product-grids.html"><img src="{{asset('/')}}ecom/assets/images/home-product-list/09.jpg" alt="#"></a>
+                            <a href="product-grids.html"><img
+                                    src="{{asset('/')}}ecom/assets/images/home-product-list/09.jpg" alt="#"></a>
                         </div>
                         <div class="list-info">
                             <h3>

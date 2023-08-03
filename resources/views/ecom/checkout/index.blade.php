@@ -3,5 +3,5 @@
     Checkout
 @endsection
 @section('body')
-    Check Out
+    Checkout
 @endsection

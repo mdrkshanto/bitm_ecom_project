@@ -186,7 +186,6 @@
                                 <div class="row">
                                     @foreach($allProducts as $product)
                                         <div class="col-md-4 my-3">
-
                                             <div class="single-product h-100">
                                                 <div class="product-image">
                                                     <img src="{{asset($product->image)}}" alt="{{$product->name}}"
@@ -293,7 +292,6 @@
                                                             class="lni lni-chevron-right"></i></a></li>
                                             </ul>
                                         </div>
-
                                     </div>
                                 </div>
                             </div>

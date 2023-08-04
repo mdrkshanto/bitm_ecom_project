@@ -101,27 +101,11 @@
                         </div>
                     @endforeach
                 @endif
-
             </div>
             <div class="row">
                 <div class="col-12">
-
                     <div class="total-amount">
-                        <div class="row">
-                            <div class="col-lg-8 col-md-6 col-12">
-                                @if(Cart::count() > 0)
-                                    <div class="left">
-                                        <div class="coupon">
-                                            <form action="#" target="_blank">
-                                                <input name="Coupon" placeholder="Enter Your Coupon">
-                                                <div class="button">
-                                                    <button class="btn">Apply Coupon</button>
-                                                </div>
-                                            </form>
-                                        </div>
-                                    </div>
-                                @endif
-                            </div>
+                        <div class="row justify-content-end">
                             <div class="col-lg-4 col-md-6 col-12">
                                 <div class="right">
                                     <ul>
@@ -147,5 +131,4 @@
             </div>
         </div>
     </div>
-
 @endsection

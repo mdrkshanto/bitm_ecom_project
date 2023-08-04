@@ -26,12 +26,14 @@
                             <ul class="nav nav-tabs" role="tablist">
                                 <li class="nav-item" role="presentation">
                                     <button class="nav-link active" data-bs-toggle="tab"
-                                            data-bs-target="#cod" type="button" role="tab" aria-selected="true">Cash on delivery
+                                            data-bs-target="#cod" type="button" role="tab" aria-selected="true">Cash on
+                                        delivery
                                     </button>
                                 </li>
                                 <li class="nav-item" role="presentation">
                                     <button class="nav-link" data-bs-toggle="tab"
-                                            data-bs-target="#online" type="button" role="tab" aria-selected="false">Online payment
+                                            data-bs-target="#online" type="button" role="tab" aria-selected="false">
+                                        Online payment
                                     </button>
                                 </li>
                             </ul>
@@ -44,46 +46,100 @@
                                                 <label class="form-label">Full Name</label>
                                                 <div class="input-group input-group-sm">
                                                     <span class="input-group-text">Full name</span>
-                                                    <input type="text" class="form-control shadow-none" name="name" placeholder="Full Name" required />
+                                                    <input type="text" class="form-control shadow-none" name="name"
+                                                           placeholder="Full Name" required/>
                                                 </div>
                                             </div>
                                             <div class="my-3">
                                                 <label class="form-label">Email</label>
                                                 <div class="input-group input-group-sm">
                                                     <span class="input-group-text">Email</span>
-                                                    <input type="email" class="form-control shadow-none" name="email" placeholder="Email" required />
+                                                    <input type="email" class="form-control shadow-none" name="email"
+                                                           placeholder="Email" required/>
                                                 </div>
                                             </div>
                                             <div class="my-3">
                                                 <label class="form-label">Mobile Number</label>
                                                 <div class="input-group input-group-sm">
-                                                    <span class="input-group-text">Mobile Number</span>
-                                                    <input type="number" class="form-control shadow-none" name="mobile" placeholder="Mobile Number" required />
+                                                    <span class="input-group-text">Mobile Number (+88)</span>
+                                                    <input type="number" class="form-control shadow-none" name="mobile"
+                                                           placeholder="Mobile Number" required/>
                                                 </div>
                                             </div>
                                             <div class="my-3">
                                                 <label class="form-label">Delivery Address</label>
                                                 <div class="input-group input-group-sm">
                                                     <span class="input-group-text">Delivery Address</span>
-                                                    <textarea name="delivery" class="form-control shadow-none" placeholder="Delivery Address" required></textarea>
+                                                    <textarea name="delivery" class="form-control shadow-none"
+                                                              placeholder="Delivery Address" required></textarea>
                                                 </div>
                                             </div>
                                             <div class="my-3">
                                                 <label class="form-label">Note</label>
                                                 <div class="input-group input-group-sm">
                                                     <span class="input-group-text">Note</span>
-                                                    <textarea name="note" class="form-control shadow-none" placeholder="Your message for delivery."></textarea>
+                                                    <textarea name="note" class="form-control shadow-none"
+                                                              placeholder="Your message for delivery."></textarea>
                                                 </div>
                                             </div>
                                             <div class="row justify-content-center my-3">
-                                                <button class="btn btn-primary btn-sm shadow-none" type="submit">Confirm order</button>
+                                                <button class="btn btn-primary btn-sm shadow-none" type="submit">Confirm
+                                                    order
+                                                </button>
                                             </div>
                                         </form>
                                     </div>
                                 </div>
                                 <div class="tab-pane fade" id="online" role="tabpanel">
-                                    <div class="card card-body border-top-0">
-                                        lasdjflasjflasj
+                                    <div class="card card-body rounded-0 border-top-0">
+                                        <form action="{{route('checkout.test')}}" method="POST">
+                                            @csrf
+                                            <div class="my-3">
+                                                <label class="form-label">Full Name</label>
+                                                <div class="input-group input-group-sm">
+                                                    <span class="input-group-text">Full name</span>
+                                                    <input type="text" class="form-control shadow-none" name="name"
+                                                           placeholder="Full Name" required/>
+                                                </div>
+                                            </div>
+                                            <div class="my-3">
+                                                <label class="form-label">Email</label>
+                                                <div class="input-group input-group-sm">
+                                                    <span class="input-group-text">Email</span>
+                                                    <input type="email" class="form-control shadow-none" name="email"
+                                                           placeholder="Email" required/>
+                                                </div>
+                                            </div>
+                                            <div class="my-3">
+                                                <label class="form-label">Mobile Number</label>
+                                                <div class="input-group input-group-sm">
+                                                    <span class="input-group-text">Mobile Number (+88)</span>
+                                                    <input type="number" class="form-control shadow-none" name="mobile"
+                                                           placeholder="Mobile Number" required/>
+                                                </div>
+                                            </div>
+                                            <div class="my-3">
+                                                <label class="form-label">Delivery Address</label>
+                                                <div class="input-group input-group-sm">
+                                                    <span class="input-group-text">Delivery Address</span>
+                                                    <textarea name="delivery" class="form-control shadow-none"
+                                                              placeholder="Delivery Address" required></textarea>
+                                                </div>
+                                            </div>
+                                            <div class="my-3">
+                                                <label class="form-label">Note</label>
+                                                <div class="input-group input-group-sm">
+                                                    <span class="input-group-text">Note</span>
+                                                    <textarea name="note" class="form-control shadow-none"
+                                                              placeholder="Your message for delivery."></textarea>
+                                                </div>
+                                            </div>
+                                            <div class="row justify-content-center my-3">
+                                                <button class="btn btn-primary btn-sm shadow-none" type="submit">Confirm
+                                                    order
+                                                </button>
+                                            </div>
+                                        </form>
                                     </div>
                                 </div>
                             </div>
@@ -95,13 +151,14 @@
                         @if(count(Cart::content())>0)
                             <div class="checkout-sidebar-coupon">
                                 <p>Appy Coupon to get discount!</p>
-                                <form action="#">
+                                <form action="#" method="POST">
+                                    @csrf
                                     <div class="single-form form-default">
                                         <div class="form-input form">
-                                            <input type="text" placeholder="Coupon Code">
+                                            <input type="text" placeholder="Coupon Code" name="coupon_code">
                                         </div>
                                         <div class="button">
-                                            <button class="btn">apply</button>
+                                            <button class="btn" type="submit">Apply</button>
                                         </div>
                                     </div>
                                 </form>

@@ -166,26 +166,49 @@
                         @endif
                         <div class="checkout-sidebar-price-table{{count(Cart::content())>0?' mt-30':null}}">
                             <h5 class="title">Pricing Table</h5>
-                            <div class="sub-total-price">
-                                <div class="total-price">
-                                    <p class="value">Subotal Price:</p>
-                                    <p class="price">$144.00</p>
+                            @if(Cart::count() > 0)
+                                <div class="sub-total-price">
+                                    @foreach($cartProducts as $product)
+                                        <div class="total-price">
+                                            <p class="value">{{$product->name}}
+                                                : {!! $product->qty.' X &#2547;'.$product->price !!}</p>
+                                            <p class="price">&#2547;{{number_format($product->subtotal,2)}}</p>
+                                        </div>
+                                    @endforeach
                                 </div>
-                                <div class="total-price shipping">
-                                    <p class="value">Subotal Price:</p>
-                                    <p class="price">$10.50</p>
+
+                                <div class="total-payable">
+                                    <div class="payable-price">
+                                        <p class="value">Subtotal:</p>
+                                        <p class="price">&#2547;{{number_format(Cart::subtotal(),2)}}</p>
+                                    </div>
+                                    <div class="payable-price">
+                                        <p class="value">TAX(15%):</p>
+                                        <p class="price">&#2547;{{number_format(Cart::tax(),2)}}</p>
+                                    </div>
+                                    @if(Cart::count() > 0)
+                                        @php(Cart::addCost('shippingCharge',100*Cart::content()->count()))
+                                        <div class="payable-price">
+                                            <p class="value">Shipping Charge:</p>
+                                            <p class="price">
+                                                &#2547;{{number_format(Cart::getCost('shippingCharge'),2)}}</p>
+                                        </div>
+                                    @endif
                                 </div>
-                                <div class="total-price discount">
-                                    <p class="value">Subotal Price:</p>
-                                    <p class="price">$10.00</p>
+                                <div class="total-payable">
+                                    <div class="payable-price">
+                                        <p class="value">Payable Total:</p>
+                                        <p class="price">&#2547;{{number_format(Cart::total(),2)}}</p>
+                                    </div>
                                 </div>
-                            </div>
-                            <div class="total-payable">
-                                <div class="payable-price">
-                                    <p class="value">Subotal Price:</p>
-                                    <p class="price">$164.50</p>
+                            @else
+                                <div class="sub-total-price">
+                                    <div class="total-price">
+                                        <p class="value">Payable Total:</p>
+                                        <p class="price">&#2547;{{number_format(Cart::total(),2)}}</p>
+                                    </div>
                                 </div>
-                            </div>
+                            @endif
                         </div>
                         <div class="checkout-sidebar-banner mt-30">
                             <a href="product-grids.html">

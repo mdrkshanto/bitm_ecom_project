@@ -40,8 +40,8 @@ Route::controller(CartController::class)->group(function (){
 });
 
 Route::controller(CheckoutController::class)->group(function (){
-    Route::post('/test','test')->name('checkout.test');
     Route::get('/checkout','index')->name('checkout.index');
+    Route::post('/cash-order','newOrder')->name('cash.order');
 });
 
 Route::middleware([

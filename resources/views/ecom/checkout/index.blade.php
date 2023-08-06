@@ -40,14 +40,14 @@
                             <div class="tab-content">
                                 <div class="tab-pane fade show active" id="cod" role="tabpanel">
                                     <div class="card card-body rounded-0 border-top-0">
-                                        <form action="{{route('checkout.test')}}" method="POST">
+                                        <form action="{{route('cash.order')}}" method="POST">
                                             @csrf
                                             <div class="my-3">
                                                 <label class="form-label">Full Name</label>
                                                 <div class="input-group input-group-sm">
                                                     <span class="input-group-text">Full name</span>
                                                     <input type="text" class="form-control shadow-none" name="name"
-                                                           placeholder="Full Name" required/>
+                                                           placeholder="Full Name" required autofocus/>
                                                 </div>
                                             </div>
                                             <div class="my-3">
@@ -92,14 +92,14 @@
                                 </div>
                                 <div class="tab-pane fade" id="online" role="tabpanel">
                                     <div class="card card-body rounded-0 border-top-0">
-                                        <form action="{{route('checkout.test')}}" method="POST">
+                                        <form action="" method="POST">
                                             @csrf
                                             <div class="my-3">
                                                 <label class="form-label">Full Name</label>
                                                 <div class="input-group input-group-sm">
                                                     <span class="input-group-text">Full name</span>
                                                     <input type="text" class="form-control shadow-none" name="name"
-                                                           placeholder="Full Name" required/>
+                                                           placeholder="Full Name" required autofocus/>
                                                 </div>
                                             </div>
                                             <div class="my-3">
@@ -170,7 +170,7 @@
                                 <div class="sub-total-price">
                                     @foreach($cartProducts as $product)
                                         <div class="total-price">
-                                            <p class="value">{{$product->name}}
+                                            <p class="value text-justify pe-5">{{$product->name}}
                                                 : {!! $product->qty.' X &#2547;'.$product->price !!}</p>
                                             <p class="price">&#2547;{{number_format($product->subtotal,2)}}</p>
                                         </div>
@@ -198,14 +198,14 @@
                                 <div class="total-payable">
                                     <div class="payable-price">
                                         <p class="value">Payable Total:</p>
-                                        <p class="price">&#2547;{{number_format(Cart::total(),2)}}</p>
+                                        <p class="price">&#2547;{{number_format(round(Cart::total()),2)}}</p>
                                     </div>
                                 </div>
                             @else
                                 <div class="sub-total-price">
                                     <div class="total-price">
                                         <p class="value">Payable Total:</p>
-                                        <p class="price">&#2547;{{number_format(Cart::total(),2)}}</p>
+                                        <p class="price">&#2547;{{number_format(round(Cart::total()),2)}}</p>
                                     </div>
                                 </div>
                             @endif

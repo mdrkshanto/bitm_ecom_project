@@ -86,7 +86,7 @@ class CartController extends Controller
                 'image'     => $this->product->image,
                 'category'  => $this->product->category->name,
                 'slug'      => $this->product->slug,
-                'stock'     => $this->product->stock_amount,
+                'stock'     => $this->product->stock_amount
             ]
         ]);
 

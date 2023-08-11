@@ -24,7 +24,8 @@
                                 <div class="row my-3">
                                     <label class="form-label col-md-4">Select Category</label>
                                     <div class="col-md-8">
-                                        <select name="category_id" class="form-select shadow-none">
+                                        <select name="category_id" class="form-select shadow-none"
+                                                onchange="getSubcategoryByCategory(this.value)">
                                             <option disabled selected value>-- Select Category --</option>
                                             @foreach($categories as $category)
                                                 <option value="{{$category->id}}">{{$category->name}}</option>
@@ -94,7 +95,8 @@
                                 <div class="row my-3">
                                     <label class="form-label col-md-4">Stock Amount</label>
                                     <div class="col-md-8">
-                                        <input type="number" class="form-control shadow-none" name="stock_amount" required>
+                                        <input type="number" class="form-control shadow-none" name="stock_amount"
+                                               required>
                                         @if($errors->has('stock_amount'))
                                             <span class="text-danger">{{$errors->first('stock_amount')}}</span>
                                         @endif
@@ -104,7 +106,8 @@
                                 <div class="row my-3">
                                     <label class="form-label col-md-4">Reorder Label</label>
                                     <div class="col-md-8">
-                                        <input type="number" class="form-control shadow-none" name="reorder_label" required>
+                                        <input type="number" class="form-control shadow-none" name="reorder_label"
+                                               required>
                                         @if($errors->has('reorder_label'))
                                             <span class="text-danger">{{$errors->first('reorder_label')}}</span>
                                         @endif
@@ -124,7 +127,8 @@
                                 <div class="row my-3">
                                     <label class="form-label col-md-4">Product Selling Price</label>
                                     <div class="col-md-8">
-                                        <input type="number" class="form-control shadow-none" name="selling_price" required>
+                                        <input type="number" class="form-control shadow-none" name="selling_price"
+                                               required>
                                         @if($errors->has('selling_price'))
                                             <span class="text-danger">{{$errors->first('selling_price')}}</span>
                                         @endif
@@ -187,4 +191,19 @@
             </div>
         </div>
     </section>
+@endsection
+@section('customScripts')
+    <script>
+        function getSubcategoryByCategory(categoryId) {
+            $.ajax({
+                type: "get",
+                url: "{{route('getSubcategoryByCategory')}}",
+                data: {"id": categoryId},
+                dataType: "JSON",
+                success: function (response) {
+                    console.log(response)
+                },
+            });
+        }
+    </script>
 @endsection

@@ -3,12 +3,13 @@
 namespace App\Http\Controllers;
 
 use App\Models\Customer;
+use App\Models\Order;
 use Gloudemans\Shoppingcart\Facades\Cart;
 use Illuminate\Http\Request;
 
 class CheckoutController extends Controller
 {
-    private $customer;
+    private $customer, $order;
 
     public function index()
     {
@@ -17,5 +18,6 @@ class CheckoutController extends Controller
     public function newOrder(Request $request)
     {
         $this->customer = Customer::newCustomer($request);
+        $this->order = Order::newOrder();
     }
 }

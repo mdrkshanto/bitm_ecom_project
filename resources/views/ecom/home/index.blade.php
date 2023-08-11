@@ -17,10 +17,10 @@
                                      style="background-image: url({{asset($carouselProduct->image)}});">
                                     <div class="content">
                                         <h2>{{$carouselProduct->name}}</h2>
-                                        <p>{{$carouselProduct->short_description}}</p>
+                                        <p>{{subWords($carouselProduct->short_description,30,'...')}}</p>
                                         <h3><span>Now Only</span> &#2547;{{$carouselProduct->selling_price}}</h3>
                                         <div class="button">
-                                            <a href="product-grids.html" class="btn">Shop Now</a>
+                                            <a href="{{route('product.detail',['slug'=>$carouselProduct->slug])}}" class="btn">Shop Now</a>
                                         </div>
                                     </div>
                                 </div>

@@ -55,4 +55,7 @@ Route::middleware([
     Route::resource('brand',BrandController::class)->parameters(['brand'=>'brand:slug']);
     Route::resource('unit',UnitController::class)->parameters(['unit'=>'unit:slug']);
     Route::resource('product',ProductController::class)->parameters(['product'=>'product:slug']);
+    Route::controller(ProductController::class)->group(function (){
+        Route::get('/get-subcategory-by-category','getSubcategoryByCategory')->name('getSubcategoryByCategory');
+    });
 });

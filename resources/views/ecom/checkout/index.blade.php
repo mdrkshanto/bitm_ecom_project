@@ -187,6 +187,7 @@
                                         <p class="price">&#2547;{{number_format(Cart::tax(),2)}}</p>
                                     </div>
                                     @if(Cart::count() > 0)
+
                                         @php(Cart::addCost('shippingCharge',100*Cart::content()->count()))
                                         <div class="payable-price">
                                             <p class="value">Shipping Charge:</p>

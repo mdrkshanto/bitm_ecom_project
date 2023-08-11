@@ -1,16 +1,17 @@
 <?php
+
 use Intervention\Image\Facades\Image;
 use Illuminate\Support\Str;
 use Haruncpi\LaravelIdGenerator\IdGenerator;
 
 function imageUrl($image, $directory, $width = false, $height = false)
 {
-    if (!is_dir($directory)){
-        mkdir($directory,0755, true);
+    if (!is_dir($directory)) {
+        mkdir($directory, 0755, true);
     }
-    $imageName = hexdec(uniqid()).'.'.$image->getClientOriginalExtension();
-    $imageUrl = $directory.'/'.$imageName;
-    Image::make($image)->resize($width,$height)->save($imageUrl);
+    $imageName = hexdec(uniqid()) . '.' . $image->getClientOriginalExtension();
+    $imageUrl = $directory . '/' . $imageName;
+    Image::make($image)->resize($width, $height)->save($imageUrl);
     return $imageUrl;
 }
 
@@ -25,7 +26,12 @@ function genSulg($name, $count = false, $id = false)
     return Str::slug($name);
 }
 
-function genId($table,$field,$length,$prefix)
+function genId($table, $field, $length, $prefix)
 {
-    return IdGenerator::generate(['table'=>$table,'field'=>$field,'length'=>$length,'prefix'=>$prefix]);
+    return IdGenerator::generate(['table' => $table, 'field' => $field, 'length' => $length, 'prefix' => $prefix]);
+}
+
+function subWords($string, $words = 50, $end = null)
+{
+    return Str::words($string, $words, $end);
 }
